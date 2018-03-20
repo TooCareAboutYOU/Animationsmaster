@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
 
 import com.animations.main.fragments.AnimatorFragment;
 import com.animations.main.fragments.TranslateRotateFragment;
 import com.animations.main.fragments.ViewFragment;
+import com.animations.main.fragments.ViewMotionEventFragment;
+import com.animations.main.widgets.CustomButtonView;
 
 public class FunctionActivity extends AppCompatActivity {
 
@@ -31,8 +35,43 @@ public class FunctionActivity extends AppCompatActivity {
             }case 2:{
                 transaction.add(R.id.cl_container,new ViewFragment());
                 break;
+            }case 3:{
+                transaction.add(R.id.cl_container,new ViewMotionEventFragment());
+                break;
             }
         }
         transaction.commit();
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:{
+                Log.e(CustomButtonView.TAG, "父级 onTouchEvent: ACTION_DOWN");
+                break;
+            }
+            case MotionEvent.ACTION_UP:{
+                Log.e(CustomButtonView.TAG, "父级 onTouchEvent: ACTION_UP");
+                break;
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:{
+                Log.e(CustomButtonView.TAG, "父级 dispatchTouchEvent: ACTION_DOWN");
+                break;
+            }
+            case MotionEvent.ACTION_UP:{
+                Log.e(CustomButtonView.TAG, "父级 dispatchTouchEvent: ACTION_UP");
+                break;
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+
 }

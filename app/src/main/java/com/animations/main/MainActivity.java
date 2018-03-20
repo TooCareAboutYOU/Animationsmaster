@@ -15,7 +15,7 @@ public class MainActivity extends ListActivity {
         setContentView(R.layout.activity_main);
 
         //1.数据源
-        String[] data = {"Translate Rotate","AnimatorSet","View Listener"};
+        String[] data = {"Translate Rotate","AnimatorSet","View Listener","View MotionEvent"};
 
         //2.适配器
         @SuppressWarnings("unchecked")
